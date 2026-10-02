@@ -1,0 +1,36 @@
+@keyframes piscar {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.8); }
+  50%      { box-shadow: 0 0 0 16px rgba(220, 38, 38, 0); }
+}
+.alerta-piscante { animation: piscar 1.2s infinite; }
+
+@keyframes sensor-pulso { 0%, 100% { opacity: 1; } 50% { opacity: 0.35; } }
+.sensor-pisca { animation: sensor-pulso 0.9s infinite; }
+
+@keyframes entrada { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+.fade-in { animation: entrada 0.6s ease-out both; }
+
+.grid-bg {
+  background-image:
+    linear-gradient(rgba(148, 163, 184, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(148, 163, 184, 0.06) 1px, transparent 1px);
+  background-size: 36px 36px;
+}
+
+circle[id^="sensor-"] { transition: fill 0.3s; }
+
+/* Componentes reutilizáveis (CSS puro, sem depender do @apply do CDN) */
+.card  { background: #0f172a; border: 1px solid #1e293b; border-radius: 12px; padding: 20px; }
+.panel { background: #0f172a; border: 1px solid #1e293b; border-radius: 16px; padding: 20px; }
+.panel-t { font-weight: 600; margin-bottom: 12px; }
+.kpi   { background: #0f172a; border: 1px solid #1e293b; border-radius: 12px; padding: 16px; }
+.kpi-l { font-size: 12px; text-transform: uppercase; letter-spacing: .05em; color: #94a3b8; }
+.kpi-v { font-size: 28px; font-weight: 700; margin-top: 4px; }
+
+.step { position: relative; background: #0f172a; border: 1px solid #1e293b; border-radius: 12px; padding: 16px; }
+.step h3 { font-weight: 600; margin-top: 8px; }
+.step p  { font-size: 13px; color: #94a3b8; margin-top: 4px; }
+.step-n  { display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px;
+           border-radius: 999px; background: #10b981; color: #022c22; font-weight: 700; font-size: 14px; }
+
+#tabela-historico td { border-bottom: 1px solid #1e293b; }

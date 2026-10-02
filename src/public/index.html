@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SafeRecovery · Sincronismo seguro entre esteira e braço robótico | SinkroTech</title>
+  <meta name="description" content="SafeRecovery, da SinkroTech: intertravamento por sensores e Botão de Resgate para esteira e braço robótico na montagem de chuveiros elétricos." />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body class="bg-slate-950 text-slate-100 antialiased">
+
+  <!-- NAV -->
+  <header class="sticky top-0 z-40 backdrop-blur bg-slate-950/80 border-b border-slate-800">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex flex-wrap items-center justify-between gap-3">
+      <a href="/" class="flex items-center gap-2">
+        <svg viewBox="0 0 24 24" class="h-8 w-8 text-emerald-400" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6l8-3z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg>
+        <span class="font-bold text-lg leading-none">SafeRecovery<span class="block text-[10px] font-medium text-slate-400 tracking-widest">BY SINKROTECH</span></span>
+      </a>
+
+      <nav class="flex items-center gap-1 bg-slate-900 border border-slate-800 rounded-lg p-1 text-sm">
+        <a href="/" class="px-3 py-1.5 rounded-md bg-emerald-500 text-slate-950 font-semibold">🏠 Início</a>
+        <a href="painel.html" class="px-3 py-1.5 rounded-md text-slate-300 hover:text-white hover:bg-slate-800">📡 Dashboard em tempo real</a>
+      </nav>
+
+      <nav class="hidden lg:flex items-center gap-5 text-sm text-slate-300">
+        <a href="#problema" class="hover:text-white">Problema</a>
+        <a href="#solucao" class="hover:text-white">Solução</a>
+        <a href="#resgate" class="hover:text-white">Botão de Resgate</a>
+        <a href="#normas" class="hover:text-white">Normas</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="grid-bg">
+    <div class="max-w-6xl mx-auto px-4 py-16 md:py-24 grid md:grid-cols-2 gap-10 items-center">
+      <div class="fade-in">
+        <span class="inline-block text-xs font-semibold tracking-widest text-emerald-400 bg-emerald-400/10 border border-emerald-400/30 rounded-full px-3 py-1">INTEGRAÇÃO ELETROTECNOLÓGICA · NR-10 · NR-12</span>
+        <h1 class="mt-4 text-4xl md:text-5xl font-extrabold leading-tight">
+          Esteira e braço robótico<br /><span class="text-emerald-400">sincronizados por sensores, não por tempo.</span>
+        </h1>
+        <p class="mt-4 text-slate-300 text-lg">
+          O SafeRecovery reestrutura o intertravamento do CLP para que o braço só desça quando a esteira
+          estiver realmente parada. Se o sincronismo falhar, o Botão de Resgate leva a linha ao modo de descanso
+          e conduz a manutenção de forma guiada e registrada.
+        </p>
+        <div class="mt-6 flex flex-wrap gap-3">
+          <a href="painel.html" class="px-5 py-3 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold">📡 Abrir dashboard em tempo real</a>
+          <a href="#problema" class="px-5 py-3 rounded-lg border border-slate-600 hover:border-slate-400 font-semibold">Entender o problema</a>
+        </div>
+      </div>
+
+      <div class="fade-in">
+        <div class="rounded-2xl border border-red-500/40 bg-gradient-to-br from-red-600/90 to-red-900 p-6 shadow-2xl alerta-piscante">
+          <p class="text-xs tracking-widest text-red-100">STATUS DA LINHA (EXEMPLO)</p>
+          <p class="text-3xl font-extrabold mt-1">● MODO DE DESCANSO</p>
+          <p class="text-red-100 text-sm mt-1">Falha de sincronismo esteira / braço robótico</p>
+          <div class="mt-4 rounded-lg bg-black/25 p-3 text-sm space-y-1">
+            <p><span class="text-red-200">Localização:</span> Sensor Indutivo 02 · Esteira</p>
+            <p><span class="text-red-200">Causa provável:</span> Frenagem fora do limite seguro</p>
+            <p><span class="text-red-200">Histórico:</span> falhas recentes neste ponto</p>
+          </div>
+          <div class="mt-4 w-full text-center py-2 rounded bg-white/90 text-red-700 font-bold text-sm">BOTÃO DE RESGATE · aguardando aceite do técnico</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROBLEMA -->
+  <section id="problema" class="max-w-6xl mx-auto px-4 py-16">
+    <h2 class="text-3xl font-bold">O problema que resolvemos</h2>
+    <p class="mt-3 text-slate-300 max-w-3xl">
+      Na etapa de montagem de <strong>chuveiros elétricos</strong>, falta sincronismo entre a esteira e o braço robótico.
+      O braço inicia a descida <strong>antes do término da frenagem da esteira</strong>, porque o intertravamento usa
+      <strong>temporizadores fixos</strong>, que não consideram variações mecânicas nem a inércia do motor.
+    </p>
+    <div class="mt-8 grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div class="card"><p class="text-2xl">🥤</p><h3 class="font-semibold mt-1">Copos plásticos quebrados</h3><p class="text-slate-400 text-sm mt-1">O braço desce sobre a peça ainda em movimento.</p></div>
+      <div class="card"><p class="text-2xl">🔥</p><h3 class="font-semibold mt-1">Resistências amassadas</h3><p class="text-slate-400 text-sm mt-1">Componentes elétricos danificados na montagem.</p></div>
+      <div class="card"><p class="text-2xl">♻️</p><h3 class="font-semibold mt-1">Alto índice de refugo</h3><p class="text-slate-400 text-sm mt-1">Peças descartadas e desperdício de material.</p></div>
+      <div class="card"><p class="text-2xl">⏸️</p><h3 class="font-semibold mt-1">Paradas não planejadas</h3><p class="text-slate-400 text-sm mt-1">Linha interrompida sem diagnóstico e sem protocolo de retomada.</p></div>
+    </div>
+  </section>
+
+  <!-- SOLUÇÃO -->
+  <section id="solucao" class="bg-slate-900/60 border-y border-slate-800">
+    <div class="max-w-6xl mx-auto px-4 py-16 grid md:grid-cols-2 gap-8 items-center">
+      <div>
+        <h2 class="text-3xl font-bold">A solução</h2>
+        <p class="mt-3 text-slate-300">
+          <strong>Reestruturação do intertravamento no CLP, em lógica Ladder</strong>, com a adição de sensores
+          <strong>ópticos e indutivos</strong> que confirmam <strong>velocidade zero</strong> antes de liberar o movimento do braço.
+          O tempo deixa de ser a referência: quem decide é o estado real da esteira.
+        </p>
+        <ul class="mt-4 space-y-2 text-slate-200 text-sm">
+          <li>🔵 <strong>Sensor óptico</strong>: presença e posição do copo plástico</li>
+          <li>🟠 <strong>Sensor indutivo na esteira</strong>: confirmação de velocidade zero</li>
+          <li>🟣 <strong>Sensor indutivo no braço</strong>: posição do braço robótico</li>
+        </ul>
+        <p class="mt-4 text-slate-400 text-sm">
+          A meta é eliminar o desperdício causado pelo descompasso e elevar a eficiência (OEE) da máquina.
+        </p>
+      </div>
+      <div class="rounded-xl border border-slate-700 bg-slate-950 p-5 text-sm font-mono text-emerald-300 overflow-x-auto">
+<pre class="text-slate-400"># Lógica de intertravamento (conceito)</pre>
+<pre>BRAÇO_PODE_DESCER =
+    ESTEIRA_VELOCIDADE_ZERO   (indutivo)
+  E COPO_PRESENTE             (óptico)
+  E BRAÇO_EM_REFERÊNCIA       (indutivo)
+  E NÃO MODO_DESCANSO
+
+SE falha de sincronismo:
+    PARAR esteira
+    BRAÇO → posição de descanso
+    ALERTA → operador e técnicos</pre>
+      </div>
+    </div>
+  </section>
+
+  <!-- BOTÃO DE RESGATE -->
+  <section id="resgate" class="max-w-6xl mx-auto px-4 py-16">
+    <h2 class="text-3xl font-bold">Módulo Botão de Resgate <span class="text-emerald-400">(Safe Recovery)</span></h2>
+    <p class="mt-3 text-slate-300 max-w-3xl">
+      Acionado <strong>por detecção dos sensores ou manualmente</strong>, o Botão de Resgate coloca o sistema em
+      <strong>modo de descanso</strong>. A parada emergencial vira um <strong>processo guiado de manutenção</strong>,
+      com histórico e geolocalização do problema.
+    </p>
+
+    <ol class="mt-8 grid md:grid-cols-5 gap-4">
+      <li class="step"><span class="step-n">1</span><h3>Detecção</h3><p>Sensores identificam a quebra de sincronismo, ou o operador aciona manualmente.</p></li>
+      <li class="step"><span class="step-n">2</span><h3>Modo de descanso</h3><p>A esteira é paralisada e o braço vai para a posição de descanso.</p></li>
+      <li class="step"><span class="step-n">3</span><h3>Alerta</h3><p>Operador e técnicos recebem localização, causa provável e histórico de falhas.</p></li>
+      <li class="step"><span class="step-n">4</span><h3>Aceite</h3><p>O religamento exige nome, matrícula e aceite da ação de manutenção.</p></li>
+      <li class="step"><span class="step-n">5</span><h3>Registro</h3><p>Início, fim, técnico e diagnóstico ficam salvos para auditoria.</p></li>
+    </ol>
+
+    <div class="mt-8 grid sm:grid-cols-3 gap-4">
+      <div class="card"><h3 class="font-semibold">⏱ Menor MTTR</h3><p class="text-slate-400 text-sm mt-1">Diagnóstico pronto antes de o técnico chegar à célula.</p></div>
+      <div class="card"><h3 class="font-semibold">🔒 Sem acionamento acidental</h3><p class="text-slate-400 text-sm mt-1">Religamento travado até a validação formal; acionamento manual com confirmação.</p></div>
+      <div class="card"><h3 class="font-semibold">📋 Histórico e localização</h3><p class="text-slate-400 text-sm mt-1">Cada ocorrência registra o ponto exato e a reincidência por sensor.</p></div>
+    </div>
+  </section>
+
+  <!-- NORMAS -->
+  <section id="normas" class="bg-slate-900/60 border-y border-slate-800">
+    <div class="max-w-6xl mx-auto px-4 py-16">
+      <h2 class="text-3xl font-bold">Segurança e normas</h2>
+      <p class="mt-3 text-slate-400 max-w-3xl">A solução foi projetada para atender requisitos de segurança das normas regulamentadoras aplicáveis ao ambiente industrial.</p>
+      <div class="mt-8 grid md:grid-cols-2 gap-4">
+        <div class="card"><h3 class="font-semibold text-lg">NR-12 · Máquinas e equipamentos</h3><p class="text-slate-400 text-sm mt-1">Intertravamento, parada segura e religamento controlado, com registro de quem autorizou e quando.</p></div>
+        <div class="card"><h3 class="font-semibold text-lg">NR-10 · Instalações e serviços em eletricidade</h3><p class="text-slate-400 text-sm mt-1">Intervenção guiada e rastreável nos componentes elétricos e de comando da célula.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="max-w-6xl mx-auto px-4 py-16 text-center">
+    <h2 class="text-3xl font-bold">Veja o SafeRecovery funcionando</h2>
+    <p class="mt-2 text-slate-400">No dashboard, simule uma falha de sensor ou acione o Botão de Resgate manualmente.</p>
+    <a href="painel.html" class="inline-block mt-6 px-6 py-3 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold">📡 Acessar dashboard em tempo real</a>
+  </section>
+
+  <footer class="border-t border-slate-800 py-6 text-center text-xs text-slate-500">
+    © 2026 SinkroTech · SafeRecovery · Protótipo (PoC) para linha de montagem de chuveiros elétricos.
+  </footer>
+</body>
+</html>

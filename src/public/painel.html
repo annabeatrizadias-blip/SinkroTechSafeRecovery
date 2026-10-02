@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dashboard em tempo real · SafeRecovery by SinkroTech</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen">
+
+  <!-- NAV -->
+  <header class="border-b border-slate-800 bg-slate-950/90 sticky top-0 z-30 backdrop-blur">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex flex-wrap items-center justify-between gap-3">
+      <a href="/" class="flex items-center gap-2">
+        <svg viewBox="0 0 24 24" class="h-7 w-7 text-emerald-400" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6l8-3z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg>
+        <span class="font-bold leading-none">SafeRecovery<span class="block text-[10px] text-slate-400 tracking-widest">BY SINKROTECH</span></span>
+      </a>
+
+      <!-- Abas -->
+      <nav class="flex items-center gap-1 bg-slate-900 border border-slate-800 rounded-lg p-1 text-sm">
+        <a href="/" class="px-3 py-1.5 rounded-md text-slate-300 hover:text-white hover:bg-slate-800">🏠 Início</a>
+        <a href="painel.html" class="px-3 py-1.5 rounded-md bg-emerald-500 text-slate-950 font-semibold flex items-center gap-2">
+          <span id="live-dot" class="h-2 w-2 rounded-full bg-slate-500"></span>
+          Dashboard em tempo real
+          <span id="live-txt" class="text-[10px] font-bold opacity-70">...</span>
+        </a>
+      </nav>
+
+      <div class="flex flex-wrap items-center gap-2">
+        <button id="btn-csv" class="px-3 py-2 rounded-lg border border-slate-700 hover:border-slate-500 text-sm">⬇ Exportar CSV</button>
+        <button id="btn-simular" class="px-3 py-2 rounded-lg border border-amber-500/60 text-amber-300 hover:bg-amber-500/10 text-sm font-semibold">⚠ Simular falha de sensor</button>
+        <button id="btn-manual" class="px-3 py-2 rounded-lg bg-red-600 hover:bg-red-500 text-white text-sm font-semibold">⏻ Acionar Resgate (manual)</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto p-4 space-y-4">
+
+    <!-- BANNER DE STATUS -->
+    <section id="status-banner" class="rounded-2xl p-6 bg-gradient-to-br from-emerald-600 to-emerald-800 text-white shadow-lg transition-all">
+      <div class="flex flex-wrap items-center justify-between gap-4">
+        <div>
+          <p class="text-xs tracking-widest opacity-80">STATUS DA LINHA · MONTAGEM DE CHUVEIROS ELÉTRICOS</p>
+          <p id="status-texto" class="text-3xl font-extrabold">● OPERANDO</p>
+          <p id="status-sub" class="text-sm opacity-90 mt-1">Linha sincronizada. Nenhuma anomalia detectada.</p>
+        </div>
+        <div id="bloco-timer" class="hidden text-right">
+          <p class="text-xs tracking-widest opacity-80">PARADA HÁ</p>
+          <p id="timer-parada" class="text-4xl font-mono font-bold">00:00</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- MÉTRICAS -->
+    <section class="grid grid-cols-2 md:grid-cols-4 gap-3">
+      <div class="kpi"><p class="kpi-l">OEE</p><p id="m-oee" class="kpi-v">--</p></div>
+      <div class="kpi"><p class="kpi-l">Peças montadas</p><p id="m-pecas" class="kpi-v">0</p></div>
+      <div class="kpi"><p class="kpi-l">MTTR</p><p id="m-mttr" class="kpi-v">--</p></div>
+      <div class="kpi"><p class="kpi-l">Paradas resolvidas</p><p id="m-paradas" class="kpi-v">0</p></div>
+    </section>
+
+    <!-- MAPA -->
+    <section class="panel">
+      <h2 class="panel-t">Mapa esquemático da célula</h2>
+      <svg viewBox="0 0 700 170" class="w-full max-w-3xl mx-auto">
+        <rect x="30" y="90" width="640" height="30" rx="6" fill="#334155" />
+        <text x="350" y="110" text-anchor="middle" font-size="12" fill="#94a3b8">ESTEIRA</text>
+        <rect x="520" y="20" width="70" height="40" rx="6" fill="#475569" />
+        <text x="555" y="45" text-anchor="middle" font-size="11" fill="#e2e8f0">BRAÇO ROBÓTICO</text>
+
+        <circle id="sensor-S01" cx="110" cy="70" r="14" fill="#16a34a" />
+        <text x="110" y="145" text-anchor="middle" font-size="11" fill="#cbd5e1">S01 Óptico (copo)</text>
+        <circle id="sensor-S02" cx="320" cy="70" r="14" fill="#16a34a" />
+        <text x="320" y="145" text-anchor="middle" font-size="11" fill="#cbd5e1">S02 Indutivo (esteira)</text>
+        <circle id="sensor-S03" cx="555" cy="80" r="14" fill="#16a34a" />
+        <text x="555" y="145" text-anchor="middle" font-size="11" fill="#cbd5e1">S03 Indutivo (braço)</text>
+      </svg>
+    </section>
+
+    <!-- HISTÓRICO -->
+    <section class="panel">
+      <h2 class="panel-t">Histórico de ocorrências</h2>
+      <div class="overflow-x-auto">
+        <table class="min-w-full text-sm">
+          <thead class="text-left text-slate-400 border-b border-slate-700">
+            <tr>
+              <th class="py-2 pr-3">ID</th><th class="pr-3">Origem / Sensor</th><th class="pr-3">Início</th>
+              <th class="pr-3">Fim</th><th class="pr-3">Técnico</th><th class="pr-3">Parada</th>
+              <th class="pr-3">Status</th><th></th>
+            </tr>
+          </thead>
+          <tbody id="tabela-historico"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <!-- TOASTS -->
+  <div id="toasts" class="fixed bottom-4 right-4 z-[60] space-y-2"></div>
+
+  <!-- MODAL DE EMERGÊNCIA -->
+  <div id="modal-resgate" class="hidden fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4">
+    <div class="bg-white text-slate-800 rounded-xl shadow-2xl w-full max-w-2xl max-h-[95vh] overflow-y-auto border-4 border-red-600 alerta-piscante">
+      <div class="bg-red-600 text-white px-5 py-3">
+        <h2 class="text-xl font-bold">🚨 MODO DE DESCANSO ATIVO · BOTÃO DE RESGATE</h2>
+        <p class="text-sm">Esteira parada e braço robótico em posição de descanso.</p>
+      </div>
+      <div class="p-5 space-y-4">
+        <div>
+          <p class="text-xs uppercase text-slate-500">Origem / sensor com desvio</p>
+          <p id="r-sensor" class="text-lg font-bold"></p>
+          <p id="r-local" class="text-sm text-slate-600"></p>
+          <p id="r-leitura" class="text-sm text-red-700 font-semibold"></p>
+        </div>
+        <div>
+          <p class="text-xs uppercase text-slate-500 mb-1">Causas prováveis</p>
+          <ul id="r-causas" class="list-disc pl-5 text-sm space-y-1"></ul>
+        </div>
+        <div>
+          <p class="text-xs uppercase text-slate-500 mb-1">Histórico de falhas deste ponto</p>
+          <table class="w-full text-sm">
+            <thead class="text-left text-slate-500 border-b"><tr><th class="py-1">ID</th><th>Início</th><th>Parada</th><th>Técnico</th></tr></thead>
+            <tbody id="r-historico-sensor"></tbody>
+          </table>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <input id="tec-nome" type="text" placeholder="Nome do técnico" class="border rounded px-3 py-2 text-sm" />
+          <input id="tec-matricula" type="text" placeholder="Matrícula" class="border rounded px-3 py-2 text-sm" />
+        </div>
+        <label class="flex items-start gap-2 text-sm bg-amber-50 border border-amber-300 rounded p-3 cursor-pointer">
+          <input id="chk-nr12" type="checkbox" class="mt-1 h-4 w-4" />
+          <span>Declaro que realizei a manutenção preventiva e cumpro com a NR-12.</span>
+        </label>
+        <p id="r-erro" class="hidden text-sm text-red-700 font-semibold"></p>
+        <button id="btn-resgate" disabled
+                class="w-full py-3 rounded-lg font-bold text-white bg-red-600 hover:bg-red-700 disabled:bg-slate-300 disabled:cursor-not-allowed transition-colors">
+          BOTÃO DE RESGATE · LIBERAR LINHA
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="js/socket-client.js"></script>
+  <script src="js/dashboard.js"></script>
+  <script src="js/resgate-modal.js"></script>
+</body>
+</html>
